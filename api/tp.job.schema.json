@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://open-autopose.dev/schema/tp.job/v1.json",
+  "title": "Open AutoPose Job Spec",
+  "description": "Declarative render job for Open AutoPose. Contract id: tp.job/v1. This schema is documentation + external-tooling validation; the app and CLI enforce the same rules via api/tp-spec.js.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "spec": { "const": "tp.job/v1", "description": "Contract version tag." },
+    "input": {
+      "type": ["object", "null"],
+      "description": "Source video. May be omitted here and supplied as a File/Blob at run time.",
+      "additionalProperties": false,
+      "properties": { "url": { "type": "string", "description": "Video URL or path fetchable by the runtime." } },
+      "required": ["url"]
+    },
+    "fps": {
+      "description": "Frame rate. 'auto' estimates from the clip.",
+      "oneOf": [ { "const": "auto" }, { "type": "number", "minimum": 1, "maximum": 120 } ],
+      "default": "auto"
+    },
+    "range": {
+      "description": "Frame range to process.",
+      "default": "all",
+      "oneOf": [
+        { "const": "all" },
+        { "type": "object", "additionalProperties": false, "required": ["inFrame", "outFrame"],
+          "properties": { "inFrame": { "type": "integer", "minimum": 0 }, "outFrame": { "type": "integer", "minimum": 0 } } },
+        { "type": "object", "additionalProperties": false, "required": ["startSec", "endSec"],
+          "properties": { "startSec": { "type": "number", "minimum": 0 }, "endSec": { "type": "number", "minimum": 0 } } }
+      ]
+    },
+    "characters": { "type": "integer", "minimum": 1, "maximum": 5, "default": 1, "description": "People to track (>1 enables multi-character identity assignment)." },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1, "default": 0.5 },
+    "smoothing": { "type": "number", "minimum": 0, "maximum": 1, "default": 0.5, "description": "Temporal pose smoothing strength." },
+    "pose": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "style": { "enum": ["openpose", "white"], "default": "openpose" },
+        "opacity": { "type": "number", "minimum": 0, "maximum": 1, "default": 1 },
+        "bone": { "type": "number", "minimum": 1, "maximum": 20, "default": 5 },
+        "joint": { "type": "number", "minimum": 1, "maximum": 20, "default": 6 }
+      }
+    },
+    "silhouette": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean", "default": false },
+        "style": { "enum": ["white", "black", "green", "magenta"], "default": "white" },
+        "opacity": { "type": "number", "minimum": 0, "maximum": 1, "default": 0.45 }
+      }
+    },
+    "depth": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean", "default": false },
+        "engine": { "enum": ["fast", "vda"], "default": "fast", "description": "fast = per-frame Depth Anything V2; vda = temporally-consistent Video-Depth-Anything (needs WebGPU)." },
+        "opacity": { "type": "number", "minimum": 0, "maximum": 1, "default": 1 },
+        "tint": { "type": "boolean", "default": false },
+        "stabilize": { "type": "boolean", "default": true },
+        "invert": { "type": "boolean", "default": false },
+        "smooth": { "type": "integer", "minimum": 0, "maximum": 10, "default": 2 }
+      }
+    },
+    "camera": { "enum": ["match", "free"], "default": "match" },
+    "output": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "format": {
+          "description": "One format or an array of formats to emit.",
+          "oneOf": [ { "enum": ["mp4", "png", "jpeg", "tiff", "json", "openpose", "webm"] }, { "type": "array", "minItems": 1, "items": { "enum": ["mp4", "png", "jpeg", "tiff", "json", "openpose", "webm"] } } ],
+          "default": "mp4"
+        },
+        "resolution": { "oneOf": [ { "const": "source" }, { "enum": [512, 768, 1024] } ], "default": "source" }
+      }
+    }
+  }
+}

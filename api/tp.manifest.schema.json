@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://open-autopose.dev/schema/tp.manifest/v1.json",
+  "title": "Open AutoPose Result Manifest",
+  "description": "Deterministic, reproducible record emitted by TP.run(). Contract id: tp.manifest/v1.",
+  "type": "object",
+  "required": ["manifest", "app", "job", "source", "artifacts", "startedAt", "finishedAt"],
+  "properties": {
+    "manifest": { "const": "tp.manifest/v1" },
+    "app": {
+      "type": "object", "required": ["name", "version"],
+      "properties": {
+        "name": { "const": "open-autopose" },
+        "version": { "type": "string", "description": "App build, e.g. v1.0.0" },
+        "spec": { "const": "tp.job/v1" }
+      }
+    },
+    "capabilities": { "type": "object", "description": "Runtime capability snapshot at job time (webgpu, webcodecs, …)." },
+    "job": { "type": "object", "description": "The normalized tp.job/v1 that was executed." },
+    "source": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "sha256": { "type": "string", "description": "SHA-256 of the input video bytes." },
+        "bytes": { "type": "integer" },
+        "width": { "type": "integer" },
+        "height": { "type": "integer" },
+        "fps": { "type": "number" },
+        "durationSec": { "type": "number" },
+        "frameCount": { "type": "integer" }
+      }
+    },
+    "models": {
+      "type": "object",
+      "properties": {
+        "pose": { "type": "string", "description": "e.g. mediapipe_pose_landmarker_full" },
+        "depthEngine": { "type": ["string", "null"] },
+        "depthBackend": { "type": ["string", "null"] }
+      }
+    },
+    "range": {
+      "type": "object",
+      "properties": { "inFrame": { "type": "integer" }, "outFrame": { "type": "integer" }, "frames": { "type": "integer" } }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object", "required": ["name", "kind", "bytes", "sha256"],
+        "properties": {
+          "name": { "type": "string" },
+          "kind": { "enum": ["mp4", "png-zip", "json"] },
+          "mime": { "type": "string" },
+          "bytes": { "type": "integer" },
+          "sha256": { "type": "string" }
+        }
+      }
+    },
+    "timingsMs": { "type": "object", "description": "Per-stage wall-clock timings." },
+    "warnings": { "type": "array", "items": { "type": "string" } },
+    "startedAt": { "type": "string", "format": "date-time" },
+    "finishedAt": { "type": "string", "format": "date-time" }
+  }
+}

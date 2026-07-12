@@ -1,0 +1,37 @@
+{
+  "name": "open-autopose-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "tp.job/v1 contract, CLI, MCP server, and REST gateway for Open AutoPose",
+  "comment_type": "Left as commonjs on purpose: tp-spec.js is a UMD/CommonJS file (require + module.exports). The CLI/MCP/runner/server use explicit .mjs extensions, so they are ES modules regardless of this field.",
+  "type": "commonjs",
+  "bin": {
+    "tp-cli": "./cli/tp-cli.mjs",
+    "tp-mcp": "./mcp/tp-mcp.mjs",
+    "tp-gateway": "./server/tp-gateway.mjs"
+  },
+  "scripts": {
+    "test": "node --test tests/spec.test.mjs tests/chunking.test.mjs tests/plugins.test.mjs tests/gateway.test.mjs tests/frames.test.mjs tests/release.test.mjs",
+    "smoke": "node tests/smoke.mjs",
+    "probe": "node tests/probe-appshell.mjs",
+    "mcp": "node mcp/tp-mcp.mjs",
+    "gateway": "node server/tp-gateway.mjs",
+    "capabilities": "node cli/tp-cli.mjs capabilities",
+    "frames": "node cli/tp-frames-cli.mjs"
+  },
+  "dependencies": {
+    "playwright": "1.61.1"
+  },
+  "engines": {
+    "node": ">=20.19.0 || >=22.12.0"
+  },
+  "license": "MIT",
+  "keywords": [
+    "pose-estimation",
+    "controlnet",
+    "mediapipe",
+    "video",
+    "mcp",
+    "ffmpeg"
+  ]
+}

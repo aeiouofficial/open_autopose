@@ -1,0 +1,7 @@
+{
+  "spec": "tp.job/v1",
+  "input": { "url": "./input.mp4" },
+  "characters": 9,
+  "depth": { "enabled": true, "engine": "turbo" },
+  "output": { "format": "gif" }
+}

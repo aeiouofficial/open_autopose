@@ -1,0 +1,9 @@
+{
+  "spec": "tp.job/v1",
+  "input": { "url": "./input.mp4" },
+  "fps": "auto",
+  "range": "all",
+  "characters": 1,
+  "pose": { "enabled": true, "style": "openpose" },
+  "output": { "format": "mp4", "resolution": "source" }
+}

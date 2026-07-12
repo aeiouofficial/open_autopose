@@ -1,0 +1,10 @@
+{
+  "spec": "tp.job/v1",
+  "input": { "url": "./input.mp4" },
+  "range": { "inFrame": 0, "outFrame": 119 },
+  "characters": 3,
+  "confidence": 0.4,
+  "pose": { "enabled": true, "style": "white", "bone": 6, "joint": 7 },
+  "silhouette": { "enabled": true, "style": "white", "opacity": 0.4 },
+  "output": { "format": "png", "resolution": 1024 }
+}

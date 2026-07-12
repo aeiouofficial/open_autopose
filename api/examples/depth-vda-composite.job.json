@@ -1,0 +1,12 @@
+{
+  "spec": "tp.job/v1",
+  "input": { "url": "./input.mp4" },
+  "fps": 24,
+  "range": { "startSec": 0, "endSec": 4 },
+  "characters": 1,
+  "smoothing": 0.6,
+  "pose": { "enabled": true, "style": "openpose", "opacity": 1 },
+  "depth": { "enabled": true, "engine": "vda", "stabilize": true, "smooth": 2 },
+  "camera": "match",
+  "output": { "format": ["mp4", "json"], "resolution": 768 }
+}
