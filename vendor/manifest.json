@@ -1,0 +1,29 @@
+{
+  "manifest": "tp.vendor/v2",
+  "appEntry": "public/app.html",
+  "runtimeSource": "exact npm package versions from package-lock.json",
+  "runtimeOutput": "public/vendor/runtime-manifest.json",
+  "modelOutput": "public/vendor/model-lock.json",
+  "commands": {
+    "prepareRuntime": "npm run vendor:prepare",
+    "downloadModels": "npm run vendor:fetch-models",
+    "verify": "npm run vendor:verify"
+  },
+  "categories": {
+    "coreRuntime": [
+      "three/three.module.js",
+      "three/addons/controls/OrbitControls.js",
+      "mediapipe/vision_bundle.mjs",
+      "mediapipe/wasm/vision_wasm_internal.js",
+      "mediapipe/wasm/vision_wasm_internal.wasm",
+      "mp4-muxer/mp4-muxer.mjs",
+      "fflate/fflate.mjs"
+    ],
+    "models": [
+      "models/pose_landmarker_full.task",
+      "models/onnx-community/depth-anything-v2-small/onnx/model_quantized.onnx",
+      "vda/vda_vits_encoder_518x910_fp16.onnx",
+      "vda/vda_vits_head_T32_37x65_fp16.onnx"
+    ]
+  }
+}

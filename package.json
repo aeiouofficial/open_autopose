@@ -1,0 +1,53 @@
+{
+  "name": "open-autopose",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local-first browser application for pose, silhouette, depth, and ControlNet-oriented video workflows.",
+  "type": "module",
+  "workspaces": [
+    "api"
+  ],
+  "scripts": {
+    "setup": "npm run vendor:prepare && npm run vendor:fetch-models && npm run vendor:verify",
+    "dev": "npm run vendor:prepare && vite --host 127.0.0.1",
+    "build": "npm run vendor:prepare && npm run vendor:verify && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "serve": "node scripts/serve-dist.mjs",
+    "start": "npm run build && npm run serve",
+    "vendor:prepare": "node scripts/prepare-vendor.mjs",
+    "vendor:fetch-models": "node vendor/fetch-vendor.mjs --models-only",
+    "vendor:verify": "node scripts/verify-vendor.mjs",
+    "browsers:install": "playwright install chromium",
+    "test": "npm run test:unit",
+    "test:unit": "npm --workspace open-autopose-api test",
+    "smoke": "npm --workspace open-autopose-api run smoke",
+    "probe": "npm --workspace open-autopose-api run probe",
+    "test:all": "npm run test:unit && npm run smoke && npm run probe && npm run build && node scripts/test-local-host.mjs",
+    "gateway": "npm --workspace open-autopose-api run gateway",
+    "mcp": "npm --workspace open-autopose-api run mcp",
+    "frames": "npm --workspace open-autopose-api run frames",
+    "setup:test-browser": "npm run browsers:install",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@huggingface/transformers": "3.3.1",
+    "@mediapipe/tasks-vision": "0.10.14",
+    "fflate": "0.8.2",
+    "mp4-muxer": "5.1.5",
+    "onnxruntime-web": "1.23.0",
+    "three": "0.160.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.15.0",
+    "eslint": "9.15.0",
+    "globals": "15.12.0",
+    "prettier": "3.9.4",
+    "vite": "8.1.4"
+  },
+  "engines": {
+    "node": ">=20.19.0 || >=22.12.0"
+  },
+  "license": "MIT"
+}
