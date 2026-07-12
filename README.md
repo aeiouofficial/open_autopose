@@ -1,4 +1,5 @@
 # Open AutoPose
+<img width="2541" height="943" alt="image" src="https://github.com/user-attachments/assets/60c2e5d0-bdbe-4ebd-ac07-2dc261145187" />
 
 **Local-first browser video control toolset** for pose, silhouette, depth, and ControlNet-oriented workflows.
 
