@@ -1,0 +1,70 @@
+{
+  "format": "open-autopose.vendor-runtime/v1",
+  "generatedAt": "2026-07-10T14:23:02.618Z",
+  "source": "exact npm packages from package-lock.json",
+  "versions": {
+    "three": "0.160.0",
+    "@mediapipe/tasks-vision": "0.10.14",
+    "@huggingface/transformers": "3.3.1",
+    "fflate": "0.8.2",
+    "mp4-muxer": "5.1.5",
+    "onnxruntime-web": "1.23.0"
+  },
+  "files": [
+    {
+      "path": "three/three.module.js",
+      "bytes": 1272972,
+      "sha256": "76dea8151bc9352aef3528b4262e249b2604f62543828328db978d060d61a495"
+    },
+    {
+      "path": "three/addons/controls/OrbitControls.js",
+      "bytes": 29868,
+      "sha256": "5a44a9e86a2a0fb11933eed69bc2cd33c76a496854c1aed6ed776efa87d7b064"
+    },
+    {
+      "path": "mediapipe/vision_bundle.mjs",
+      "bytes": 136870,
+      "sha256": "e77f281f9619150d937023c355bae170e9120e3b9e43f1e23a2a7bee07197669"
+    },
+    {
+      "path": "fflate/fflate.mjs",
+      "bytes": 89198,
+      "sha256": "8cc1f687e0159e977addb6b85e274dbd11e622cf151f4fcb7b85d49622ea43e7"
+    },
+    {
+      "path": "mp4-muxer/mp4-muxer.mjs",
+      "bytes": 68981,
+      "sha256": "69f25ab5dd735289936fedbf72a0430182f6c053a0cc6b555beefb810d3d2ca9"
+    },
+    {
+      "path": "transformers/transformers.min.js",
+      "bytes": 816464,
+      "sha256": "6f4f85bb1907c36643d385abd7cba3391311f29b67a9b1d775e08061c383d4c3"
+    },
+    {
+      "path": "transformers/ort-wasm-simd-threaded.jsep.mjs",
+      "bytes": 49241,
+      "sha256": "9cee9463024309bdda66ace9b818b7bf9f284a5e6af7f1ea5b65ddb0aea0f7ca"
+    },
+    {
+      "path": "transformers/ort-wasm-simd-threaded.jsep.wasm",
+      "bytes": 22792576,
+      "sha256": "719a76c6d550f926da215dff9e711bb90ea68a7e246e8745d47331d6059c8e2f"
+    },
+    {
+      "path": "onnxruntime/ort.webgpu.min.js",
+      "bytes": 66329,
+      "sha256": "7cc555178eb26ba8009e47241329035aba4d516dded34651b029598b19b667be"
+    },
+    {
+      "path": "onnxruntime/ort-wasm-simd-threaded.jsep.mjs",
+      "bytes": 49998,
+      "sha256": "4544a9e4ba7f8cfa25e6f15bb49b9fb60414c5d78c27826dc86a5115b228675a"
+    },
+    {
+      "path": "onnxruntime/ort-wasm-simd-threaded.jsep.wasm",
+      "bytes": 23696346,
+      "sha256": "938bd5e845aaac341253f2e72af81c41be45e05c61ac055eedddee9010c57415"
+    }
+  ]
+}
